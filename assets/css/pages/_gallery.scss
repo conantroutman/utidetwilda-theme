@@ -1,0 +1,15 @@
+/*main {
+    padding-top: 75 + 100px;
+    padding-bottom: 100px;
+}
+*/
+.gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1em;
+
+    div {
+        height: 400px;
+        background-color: green;
+    }
+}

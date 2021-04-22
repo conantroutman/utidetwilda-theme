@@ -1,0 +1,39 @@
+$font-color: #434560;
+$primary-color: #EF4136;
+$background-color: #f5f5f5;
+
+$page-margin: 16em;
+$content-width: 70vw;
+$content-width-mobile: 90vw;
+
+$navbar-height: 75px;
+
+$breakpoints: (
+    'small': (max-width: 640px),
+    'medium': (max-width: 960px),
+    'large': (max-width: 1200px)
+);
+
+/// Responsive breakpoint manager
+/// @access public
+/// @param {String} $breakpoint - Breakpoint
+/// @requires $breakpoints
+@mixin respond-to($breakpoint) {
+    $raw-query: map-get($breakpoints, $breakpoint);
+  
+    @if $raw-query {
+      $query: if(
+        type-of($raw-query) == 'string',
+        unquote($raw-query),
+        inspect($raw-query)
+      );
+  
+      @media #{$query} {
+        @content;
+      }
+    } @else {
+      @error 'No value found for `#{$breakpoint}`. '
+           + 'Please make sure it is defined in `$breakpoints` map.';
+    }
+  }
+  

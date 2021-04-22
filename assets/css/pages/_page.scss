@@ -1,0 +1,136 @@
+article {
+  //display: grid;
+  //grid-template-columns: 2fr 1.25fr;
+  //gap: 10em;
+
+  h2 {
+    margin-bottom: 1em;
+  }
+
+  h3 {
+    margin-bottom: 1em;
+  }
+
+  p {
+    margin-bottom: 2em;
+  }
+}
+
+.article-header {
+  margin-bottom: 4em;
+
+  h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+
+    .price {
+      font-size: 2rem;
+    }
+  }
+}
+
+.article-content {
+  display: grid;
+  grid-template-columns: 2fr 1.25fr;
+  row-gap: 2em;
+
+  picture {
+    height: 100%;
+    overflow: hidden;
+    img {
+      width: 100%;
+    }
+  }
+
+  @include respond-to("medium") {
+    grid-template-columns: 1fr;
+    row-gap: 1em;
+
+    picture {
+      margin-bottom: 3em;
+    }
+  }
+}
+
+.infobox {
+  background-color: $primary-color;
+  color: white;
+  padding: 4em;
+
+  h4 {
+    margin-bottom: 1em;
+  }
+
+  ul {
+    margin-bottom: 2em;
+    padding-left: 1em;
+
+    p {
+      margin-bottom: 0.25rem;
+    }
+  }
+
+  @include respond-to("medium") {
+    padding: 4em calc((100vw - #{$content-width-mobile}) / 2);
+  }
+}
+
+.header-image {
+  height: 20em;
+  background-size: cover;
+  background-position: center;
+
+  &.middag {
+    background-image: url("../../images/middag.jpg");
+  }
+
+  &.vandring {
+    background-image: url("../../images/skogsol.jpg");
+  }
+
+  &.omoss {
+    background-image: url("../../images/sandrahelena.jpg");
+  }
+}
+
+.dates {
+  background-color: $background-color;
+  padding: 4em;
+
+  @include respond-to("medium") {
+    padding: 4em calc((100vw - #{$content-width-mobile}) / 2);
+  }
+}
+
+.dates-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  @include respond-to("medium") {
+    grid-template-columns: 1fr;
+    gap: 2em;
+  }
+}
+
+.month {
+  h4 {
+    margin-bottom: 1em;
+  }
+
+  ul {
+    list-style: none;
+
+    li {
+      margin-bottom: 0.25em;
+    }
+  }
+}
+
+.full {
+  opacity: 0.5;
+  text-decoration: line-through;
+}

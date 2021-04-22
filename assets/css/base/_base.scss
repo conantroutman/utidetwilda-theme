@@ -1,0 +1,31 @@
+address {
+  // Remove default italics
+  font-style: unset;
+}
+
+section {
+  padding-top: 4em;
+  padding-bottom: 4em;
+
+  //@include respond-to("medium") {
+  //  padding-bottom: 0;
+  //}
+}
+
+.container {
+  width: $content-width;
+  margin: auto;
+  //padding-left: $page-margin;
+  //padding-right: $page-margin;
+
+  @include respond-to("medium") {
+    width: 100%;
+  }
+}
+
+.text {
+  @include respond-to("medium") {
+    width: $content-width-mobile;
+    margin: auto;
+  }
+}

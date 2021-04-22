@@ -1,0 +1,59 @@
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  gap: 2em;
+
+  @include respond-to("medium") {
+    grid-template-columns: 1fr;
+    gap: 1em;
+  }
+}
+
+.card {
+  margin: auto;
+  max-width: 30rem;
+  min-width: 20rem;
+  height: 700px;
+  //border-radius: 0.25rem;
+  box-shadow: 0 3px 6px rgba($color: #000000, $alpha: 0.16);
+  //overflow: hidden;
+  background-color: #fff;
+
+  @include respond-to("small") {
+    height: auto;
+  }
+}
+
+.card-head {
+  overflow: hidden;
+  height: 33%;
+  display: block;
+  //background-image: url("../images/card-middag.png");
+  //background-position: center;
+  //background-size: cover;
+
+  picture {
+    display: block;
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+}
+
+.card-body {
+  height: calc((100% - 33%) - (3em * 2));
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding: 3em;
+
+  h3 {
+    margin-bottom: 2em;
+  }
+
+  .button {
+    margin-top: auto;
+  }
+}

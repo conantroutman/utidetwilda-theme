@@ -1,0 +1,171 @@
+/*section {
+    &:nth-of-type(even):not(:first-child) {
+        background-color: $primary-color;
+        color: white;
+    
+        .cta {
+          background-color: white;
+          color: $font-color;
+        }
+      }
+}*/
+
+.hero {
+  height: calc(100vh - #{$navbar-height});
+  width: 100%;
+  position: relative;
+  color: white;
+  padding: 0;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 2em;
+    text-align: center;
+  }
+
+  #scroll-arrow {
+    fill: #fff;
+    position: absolute;
+    bottom: 2rem;
+  }
+}
+
+.logo {
+  margin-top: calc(75px + 4em);
+  margin-bottom: 1.5em;
+
+  img {
+    width: 460px;
+    height: auto;
+  }
+}
+
+.background {
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  overflow: hidden;
+
+  .background-image {
+    width: inherit;
+    height: inherit;
+    background-image: url("../images/hero-background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+  }
+}
+
+.booking-methods {
+  display: flex;
+  flex-direction: row;
+  margin: 3em;
+  list-style: none;
+  justify-content: center;
+  align-items: center;
+  //gap: 2em;
+
+  li:not(:last-child) {
+    margin-right: 2em;
+  }
+
+  .button {
+    min-width: 100%;
+  }
+
+  /*li:not(:last-child) {
+    margin-bottom: 2em;
+  }*/
+
+  @include respond-to("small") {
+    flex-direction: column;
+
+    li:not(:last-child) {
+      margin-right: 0;
+      margin-bottom: 2em;
+    }
+  }
+}
+
+.google-maps {
+  // iframe leaves a gap at the bottom for some reason, this fixes it
+  margin-bottom: -5px;
+}
+
+.section-welcome {
+  text-align: center;
+
+  p {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+  }
+
+  hr {
+    width: 60%;
+    margin: auto;
+    background-color: $font-color;
+    opacity: 0.5;
+  }
+}
+
+.section-cards {
+  background-color: $background-color;
+}
+
+.section-booking {
+}
+
+.section-directions {
+  //background-color: $background-color;
+  padding-bottom: 0;
+
+  iframe {
+    margin-top: 4em;
+  }
+}
+
+.section-images {
+  background-color: $background-color;
+
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1em;
+
+    @include respond-to("small") {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+  }
+
+  picture {
+    img {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+
+  .logo {
+    img {
+      width: 100%;
+    }
+  }
+}

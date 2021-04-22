@@ -1,0 +1,129 @@
+header {
+    background-color: rgba($color: #fff, $alpha: 1);
+    height: $navbar-height;
+    width: 100%;
+    position: fixed;
+    box-shadow: rgba($color: #000000, $alpha: 0.16) 0 3px 6px;
+    z-index: 2;
+
+    .container {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        justify-content: space-between;
+
+        @include respond-to('medium') {
+            justify-content: center;
+        }
+    }
+
+    .logo-nav {
+        height: 30px;
+
+        img {
+            height: 100%;
+        }
+    }
+}
+
+nav {
+    display: flex;
+    justify-content: right;
+
+    .nav-links, .nav-social {
+        li {
+            display: inline;
+            padding: 1rem;
+    
+            a {
+                text-decoration: none;
+                color: $font-color;
+                font-size: 1rem;
+                font-weight: 600;
+    
+                &:hover {
+                    //text-decoration: underline;
+                    color: $primary-color;
+                }
+            }
+    
+            i {
+                font-size: 1.25rem;
+            }
+        }
+    }
+
+    .nav-links {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        z-index: 2;
+        display: flex;
+        justify-content: right;
+        overflow: hidden;
+    }
+
+    .nav-social {
+        display: flex;
+        margin-left: 2em;
+    }
+
+    @include respond-to('medium') {
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        left: 0;
+        top: $navbar-height;
+        background-color: white;
+
+        flex-direction: column;
+
+        transform: translateX(100vw);
+
+        .nav-links {
+            flex-direction: column;
+            text-align: center;
+
+            li {
+                a {
+                    font-size: 1.5rem;
+                }
+            }
+        }
+
+        .nav-social {
+            margin: auto;
+
+            li {
+                a {
+                    i {
+                        font-size: 3rem;
+                    }
+                }
+            }
+        }
+
+        &.open {
+            transform: translateX(0);
+        }
+    }
+}
+
+.burger {
+    display: none;
+    height: $navbar-height;
+    width: $navbar-height;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    cursor: pointer;
+
+    .hamburger {
+        z-index: 10;
+    }
+
+    @include respond-to('medium') {
+        display: block;
+    }
+}
