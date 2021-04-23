@@ -20,20 +20,33 @@
             </div>
 
             <nav>
-                <ul class="nav-links">
-                    <li><a href="index.html" class="nav-link">Hem</a></li>
-                    <li><a href="middagar.html" href="_blank" class="nav-link">Middagar</a></li>
-                    <li><a href="vandringar.html" href="_blank" class="nav-link">Vandringar</a></li>
-                    <li><a data-scroll href="omoss.html" class="nav-link">Om oss</a></li>
-                    <li><a data-scroll href="#boka" class="nav-link">Boka</a></li>
-                    <li><a data-scroll href="#footer" class="nav-link">Kontakt</a></li>
-                    <li><a href="presskit.zip" class="nav-link">Press kit</a></li>
-                    <!--<li><a href="galleri.html">Bildgalleri</a></li>-->
-                </ul>
-                <ul class="nav-social">
+
+                <?php
+                    wp_nav_menu(
+                        array(
+                            'menu' => 'primary',
+                            'container' => '',
+                            'theme_location' => 'primary',
+                            'items_wrap' => '<ul id="" class="nav-links">%3$s</ul>'
+                        )
+                    );
+                ?>
+
+                <?php
+                    wp_nav_menu(
+                        array(
+                            'menu' => 'social',
+                            'container' => '',
+                            'theme_location' => 'social',
+                            'items_wrap' => '<ul id="" class="nav-social">%3$s</ul>'
+                        )
+                    );
+                ?>
+
+                <!--<ul class="nav-social">
                     <li><a href="https://www.facebook.com/utidetwilda" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a></li>
                     <li><a href="https://instagram.com/uti_det_wilda" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a></li>
-                </ul>
+                </ul>-->
             </nav>
 
             <button class="burger hamburger hamburger--collapse" type="button">
