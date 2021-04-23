@@ -10,7 +10,15 @@ get_header();
                 data-sal="slide-up"
                 data-sal-delay="300"
                 data-sal-easing="ease-out-bounce">
-                <img src="images/wildas_svart.svg" alt="">
+
+                <?php
+                if(function_exists('the_custom_logo')) {
+                    //the_custom_logo();
+                    $custom_logo_id = get_theme_mod('custom_logo');
+                    $logo = wp_get_attachment_image_src($custom_logo_id);
+                }
+                ?>
+                <img src="<?= $logo[0] ?>" alt="Logo">
             </div>
 
             <h1 class="tagline"
