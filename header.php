@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="referrer" content="strict-origin" />
     <meta name="description" content="Uti det Wilda är ett kreativt matäventyr. Att äta hos oss är något utöver det vanliga. Du kan förvänta dig god och vällagad mat – men också ovanliga ingredienser från skog och trädgård som du kanske inte ätit förr; vilda örter, blad och blommor. Kött och fisk från närliggande sjöar och betesmarker tillagas vid elden och äts utomhus.">
-    <title>Uti Det Wilda</title>
     <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
 
     <?php

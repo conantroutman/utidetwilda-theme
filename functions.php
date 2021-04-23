@@ -1,5 +1,13 @@
 <?php
 
+// Dynamic title support
+function utidetwilda_theme_support() {
+    add_theme_support('title-tag');
+}
+
+add_action( 'after_setup_theme', 'utidetwilda_theme_support' );
+
+
 function utidetwilda_register_styles() {
 
     $version = wp_get_theme()->get('Version');
