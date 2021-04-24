@@ -16,7 +16,14 @@
     <header>
         <div class="container">
             <div class="logo-nav">
-                <a href="index.html"><img src="images/wildas.png" alt="Uti Det Wilda Logo"></a>
+                <?php
+                    if(function_exists('the_custom_logo')) {
+                        //the_custom_logo();
+                        $custom_logo_id = get_theme_mod('custom_logo');
+                        $logo = wp_get_attachment_image_src($custom_logo_id);
+                    }
+                ?>
+                <a href="index.html"><img src="<?= $logo[0] ?>" alt="Logo"></a>
             </div>
 
             <nav>
