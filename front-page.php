@@ -11,21 +11,21 @@ get_header();
                 data-sal-delay="300"
                 data-sal-easing="ease-out-bounce">
 
-                <?php
-                if(function_exists('the_custom_logo')) {
-                    //the_custom_logo();
-                    $custom_logo_id = get_theme_mod('custom_logo');
-                    $logo = wp_get_attachment_image_src($custom_logo_id);
-                }
-                ?>
-                <img src="<?= $logo[0] ?>" alt="Logo">
+                <?php 
+                    $logo = get_field('logo');
+                    if( !empty( $logo ) ): ?>
+                        <img src="<?php echo esc_url($logo['url']); ?>" alt="<?php echo esc_attr($logo['alt']); ?>" />
+                <?php endif; ?>
             </div>
 
             <h1 class="tagline"
                 data-sal-duration="1200"
                 data-sal="slide-up"
                 data-sal-delay="1000"
-                data-sal-easing="ease-out-bounce">En underbar matupplevelse vid sjön Unden</h1>
+                data-sal-easing="ease-out-bounce">
+                
+                <?php the_field('tagline'); ?>
+            </h1>
 
             <a data-scroll href="#boka" class="button button-primary"
                 data-sal-duration="2000"
@@ -43,10 +43,21 @@ get_header();
         
 
         <div class="background">
-            <div class="background-image rellax" data-rellax-speed="-4" />
+            <div class="background-image rellax"
+                data-rellax-speed="-4" 
+                <?php 
+                
+                // Set the hero background image to the one specified in the page editor
+                $image_url = get_field('background_image');
+                echo "style='background-image: url({$image_url})'";
+
+                ?>
+            
+            />
         </div>
 
     </section>
+
     <section class="section-welcome">
         <div class="container">
             <article
@@ -55,14 +66,8 @@ get_header();
                 data-sal-delay="200"
                 data-sal-easing="ease-out-bounce">
                 <div class="text">
-                    <h1>Välkommen till Uti det Wilda!</h1>
-                    <p class="welcome-text"><strong>Uti det Wilda</strong> är ett kreativt och lustfyllt matäventyr.
-                        Att äta hos oss är något utöver det vanliga. Du kan förvänta dig god och vällagad mat – men
-                        också ovanliga ingredienser från skog och trädgård som du kanske inte ätit förr; vilda örter, blad
-                        och blommor som kombineras med kött och fisk från närliggande sjöar och betesmarker. Allt
-                        tillagas vid elden och äts utomhus.</p>
-                    
-                    <p class="welcome-text"><strong>Uti det Wilda</strong> är också mat som är hållbar och klimatsmart, helt enkelt underbar mat!</p>
+                    <h1><?php the_field('welcome-header'); ?></h1>
+                <?php the_field('welcome-text'); ?>
                 </div>
             </article>
         </div>
@@ -75,41 +80,46 @@ get_header();
                     data-sal-duration="1200"
                     data-sal="slide-up"
                     data-sal-delay="200"
-                    data-sal-easing="ease-out-bounce">Vad vi erbjuder</h1>
+                    data-sal-easing="ease-out-bounce"><?php the_field('offers_header'); ?></h1>
 
                 <div class="cards">
-                    <div class="card"
-                    data-sal-duration="1200"
-                    data-sal="slide-up"
-                    data-sal-delay="400"
-                    data-sal-easing="ease-out-bounce">
-                        <div class="card-head">
-                            <picture>
-                                <img src="images/middag.jpg" alt="Wildamiddag">
-                            </picture>
+                
+
+                <?php
+                
+                $cards = get_field('cards');
+                if( $cards ) {
+                    foreach( $cards as $key => $card ) {
+                        $delay = 400 + (200 * $key);
+                        $image = $card['card_image'];
+                        $title = $card['card_title'];
+                        $text = $card['card_text'];
+                        $link = $card['card_link'];
+                        ?>
+
+                        <div class="card"
+                        data-sal-duration="1200"
+                        data-sal="slide-up"
+                        data-sal-delay="<?php echo $delay ?>"
+                        data-sal-easing="ease-out-bounce">
+                            <div class="card-head">
+                                <picture>
+                                    <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+                                </picture>
+                            </div>
+                            <div class="card-body">
+                                <h3><?php echo $title ?></h3>
+                                <p><?php echo $text ?></p>
+                                <a href="<?php echo $link ?>" target="_blank" class="button button-primary">Läs mer</a>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <h3>Wildamiddagar</h3>
-                            <p><strong>Sommaren 2021</strong> erbjuder vi en serie bokningsbara wildamiddagar. Middagarna äger rum utomhus och går att kombinera med vandringar eller andra utflykter i närområdet.</p>
-                            <a href="middagar.html" target="_blank" class="button button-primary">Läs mer</a>
-                        </div>
-                    </div>
-                    <div class="card"
-                    data-sal-duration="1200"
-                    data-sal="slide-up"
-                    data-sal-delay="600"
-                    data-sal-easing="ease-out-bounce">
-                        <div class="card-head">
-                            <picture>
-                                <img src="images/skogsol.jpg" alt="Solsken i skogen">
-                            </picture>
-                        </div>
-                        <div class="card-body">
-                            <h3>Wildavandringar</h3>
-                            <p><strong>Våren 2021</strong> erbjuder vi avkopplande vandringar med efterföljande trerätters middag vid Undens strand.</p>
-                            <a href="vandringar.html" target="_blank" class="button button-primary">Läs mer</a>
-                        </div>
-                    </div>
+
+                        <?php
+                    }
+                }
+                
+                ?>
+                
                 </div>
             </article>
         </div>
@@ -123,11 +133,9 @@ get_header();
                     data-sal="slide-up"
                     data-sal-delay="200"
                     data-sal-easing="ease-out-bounce">
-                    <h1 class="section-heading">Boka</h1>
-                    <p>För bokning, kontakta oss via mail, telefon eller meddela oss på Facebook.</p>
-                    <p>Betalning sker via Swish eller bankgiro direkt efter att bokningen är bekräftat.</p>
-                    <p>Märk betalningen <strong>"Wildamiddag"</strong>, eller <strong>"Wildavandring"</strong>.</p>
-                    <p><a href="bokningsvillkor.html" target="_blank">Se bokningsvillkor</a></p>
+                    <h1 class="section-heading"><?php the_field('booking_header'); ?></h1>
+                    <?php the_field('booking_text'); ?>
+                    <p><a href="<?php the_field('booking_info_link'); ?>" target="_blank"><?php the_field('booking_info_link_text'); ?></a></p>
                 </div>
                 
                 <ul class="booking-methods">
@@ -153,30 +161,24 @@ get_header();
 
     <section id="images" class="section-images">
         <div class="container">
-            <picture loading="lazy"
+
+            <?php
+            for($i = 0; $i < 3; $i++): ?>
+                <picture loading="lazy"
                 data-sal-duration="1200"
                 data-sal="slide-up"
-                data-sal-delay="200"
+                data-sal-delay="<?php echo 200 + 200 * $i ?>"
                 data-sal-easing="ease-out-bounce">
-                <source srcset="images/sten_m.jpg" media="(max-width: 960px)">
-                <img src="images/sten.jpg" alt="">
-            </picture>
-            <picture
-                data-sal-duration="1200"
-                data-sal="slide-up"
-                data-sal-delay="400"
-                data-sal-easing="ease-out-bounce">
-                <source srcset="images/tallrik_m.jpg" media="(max-width: 960px)">
-                <img src="images/tallrik.jpg" alt="">
-            </picture>
-            <picture
-                data-sal-duration="1200"
-                data-sal="slide-up"
-                data-sal-delay="600"
-                data-sal-easing="ease-out-bounce">
-                <source srcset="images/planka_m.jpg" media="(max-width: 960px)">
-                <img src="images/planka.jpg" alt="">
-            </picture>
+
+                <?php
+
+                $image = get_field('image_' . $i + 1);
+                if( !empty( $image ) ): ?>
+                    <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+                <?php endif; ?>
+
+                </picture>
+            <?php endfor; ?>
         </div>
     </section>
 
@@ -188,8 +190,8 @@ get_header();
                 data-sal-delay="200"
                 data-sal-easing="ease-out-bounce">
                 <div class="text">
-                    <h1 class="section-heading">Hitta till oss</h1>
-                    <p class="centered">Vårt utomhuskök och sommarrestaurang ligger vackert beläget intill vattnet vid sjön Unden, <strong>Hallerudsund</strong>, i utkanten av Töreboda kommun, nära Tivedens Nationalpark.</p>
+                    <h1 class="section-heading"><?php the_field('directions_header'); ?></h1>
+                    <div class="centered"><?php the_field('directions_text'); ?></div>
                 </div>
             </article>
         </div>

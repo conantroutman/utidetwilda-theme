@@ -43,3 +43,12 @@ p {
 main {
   color: $font-color;
 }
+
+.centered {
+  text-align: center;
+  width: 100%;
+
+  p {
+    margin: auto;
+  }
+}
