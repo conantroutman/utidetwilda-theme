@@ -23,7 +23,7 @@
                         $logo = wp_get_attachment_image_src($custom_logo_id);
                     }
                 ?>
-                <a href="index.html"><img src="<?= $logo[0] ?>" alt="Logo"></a>
+                <a href="<?php echo home_url(); ?>"><img src="<?= $logo[0] ?>" alt="Logo"></a>
             </div>
 
             <nav>
