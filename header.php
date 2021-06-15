@@ -27,8 +27,9 @@
             </div>
 
             <nav>
-
                 <?php
+                    // Page links
+
                     wp_nav_menu(
                         array(
                             'menu' => 'primary',
@@ -39,23 +40,14 @@
                     );
                 ?>
 
-                <?php
-                    wp_nav_menu(
-                        array(
-                            'menu' => 'social',
-                            'container' => '',
-                            'theme_location' => 'social',
-                            'items_wrap' => '<ul id="" class="nav-social">%3$s</ul>'
-                        )
-                    );
-                ?>
-
-                <!--<ul class="nav-social">
+                <ul class="nav-social">
                     <li><a href="https://www.facebook.com/utidetwilda" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a></li>
                     <li><a href="https://instagram.com/uti_det_wilda" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a></li>
-                </ul>-->
+                </ul>
             </nav>
 
+            <!-- Hamburger menu -->
+            
             <button class="burger hamburger hamburger--collapse" type="button">
                 <span class="hamburger-box">
                     <span class="hamburger-inner"></span>
