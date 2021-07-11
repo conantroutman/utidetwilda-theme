@@ -38,12 +38,36 @@
                             'items_wrap' => '<ul id="" class="nav-links">%3$s</ul>'
                         )
                     );
+                
+                
+                // vvv Leave the social links hardcoded for now, they don't need to be configurable atm. vvv
                 ?>
 
                 <ul class="nav-social">
                     <li><a href="https://www.facebook.com/utidetwilda" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a></li>
                     <li><a href="https://instagram.com/uti_det_wilda" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a></li>
                 </ul>
+
+                <?php
+
+                    // Check if the Polylang plugin is activated and create the language selection menu.
+
+                    $polylang_plugin = 'polylang/polylang.php';
+
+                    if ( is_plugin_active( $polylang_plugin ) ) {
+
+                        wp_nav_menu(
+                            array(
+                                'menu' => 'lang_select',
+                                'container' => '',
+                                'theme_location' => 'lang',
+                                'items_wrap' => '<ul id="" class="nav-links">%3$s</ul>'
+                            )
+                        );
+
+                    }
+
+                ?>
             </nav>
 
             <!-- Hamburger menu -->
